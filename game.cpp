@@ -9,19 +9,39 @@ Game::~Game() {
     std::cout << "All Clean!" << '\n';
 };
 
-void Game::run() {
-    while (this->running) {
-        while (SDL_PollEvent(&this->event)) {
-            switch (this->event.type) {
-            case SDL_QUIT:
+void Game::init() { this->initSdl(); }
+
+void Game::events() {
+    while (SDL_PollEvent(&this->event)) {
+        switch (this->event.type) {
+        case SDL_QUIT:
+            this->running = false;
+            return;
+        case SDL_KEYDOWN:
+            switch (this->event.key.keysym.scancode) {
+            case SDL_SCANCODE_ESCAPE:
                 this->running = false;
                 return;
             default:
                 break;
             }
+        default:
+            break;
         }
-        SDL_RenderClear(this->renderer.get());
-        SDL_RenderPresent(this->renderer.get());
+    }
+}
+
+void Game::draw() const {
+    SDL_RenderClear(this->renderer.get());
+    SDL_RenderPresent(this->renderer.get());
+}
+
+void Game::run() {
+    while (this->running) {
+        this->events();
+
+        this->draw();
+
         SDL_Delay(16);
     }
 }

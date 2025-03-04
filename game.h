@@ -13,10 +13,14 @@ class Game {
 
         ~Game();
 
-        void initSdl();
+        void init();
         void run();
 
     private:
+        void initSdl();
+        void events();
+        void draw() const;
+
         std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> window;
         std::shared_ptr<SDL_Renderer> renderer;
         SDL_Event event;
