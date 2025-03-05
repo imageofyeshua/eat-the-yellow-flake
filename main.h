@@ -14,7 +14,7 @@
 #include <memory>
 
 constexpr Uint32 SDL_FLAGS = SDL_INIT_EVERYTHING;
-constexpr int IMG_FLAGS = IMG_INIT_PNG;
+constexpr int IMG_FLAGS = IMG_INIT_JPG | IMG_INIT_PNG;
 
 constexpr char WINDOW_TITLE[] = "Don't Eat the Yellow Snow!";
 constexpr int WINDOW_WIDTH = 800;
