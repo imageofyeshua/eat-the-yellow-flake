@@ -6,6 +6,11 @@ void Game::initSdl() {
         throw std::runtime_error(error);
     }
 
+    if ((IMG_Init(SDL_FLAGS) & IMG_FLAGS) != IMG_FLAGS) {
+        auto error = fmt::format("Error initializing SDL2_image: {}", IMG_GetError());
+        throw std::runtime_error(error);
+    }
+
     this->window.reset(SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_CENTERED,
                                         SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH,
                                         WINDOW_HEIGHT, 0));
