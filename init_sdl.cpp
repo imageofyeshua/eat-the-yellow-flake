@@ -12,7 +12,6 @@ void Game::initSdl() {
         throw std::runtime_error(error);
     }
 
-
     this->window.reset(SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_CENTERED,
                                         SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH,
                                         WINDOW_HEIGHT, 0));
